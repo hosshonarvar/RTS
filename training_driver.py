@@ -1,9 +1,17 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Mon Dec 24 14:27:53 2019
+
+@author: hosseinhonarvar
+"""
+
 from core.model_training.model_training import train
 from core.models.model import ModelLoader
-from utils.data_preprocessing.data_preparation import data_preparation
+from utils.data_preprocessing.data_preparation import data_fetcher as d_f
 
 
-stocks = data_preparation.companies()
+stocks = d_f.companies()
 symbols = stocks['Symbol'].values.tolist()
 print(symbols)
 

@@ -1,3 +1,11 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Mon Dec 24 14:27:53 2019
+
+@author: hosseinhonarvar
+"""
+
 from core.model_inference.model_inference import Inference
 
 tickers = ['MMM']
