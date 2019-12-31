@@ -5,6 +5,7 @@ import pandas as pd
 from sklearn.preprocessing import MinMaxScaler
 from collections import OrderedDict
 import numpy as np
+from utils.data_preparation.data_preprocessing import data_fetcher, data_creator
 
 class BaseData(object):
     def __init__(self,symbol:str):
@@ -30,7 +31,7 @@ class BaseData(object):
         except:
             print("Unexpected error for symbol {} : {}".format(self.symbol, sys.exc_info()[0]))
 
-class Feature_Selection(BaseData):
+class Feature_Creator(BaseData):
     def __init__(self,symbol:str,data:pd.DataFrame,mfi_days=14):
         BaseData.__init__(self,symbol)
         self.__days = mfi_days
@@ -146,3 +147,29 @@ class Feature_Selection(BaseData):
             pointer += 1
 
         self.__data["mfi_index"] = pd.Series(typ_price["mfi_index"].values, index = typ_price.index)
+
+class Volatility(object):
+    def __init__(self,symbol:str):
+        try:
+            path_norm_data = "./data/{}/normalized.csv".format(symbol)
+            dataset = pd.read_csv(path_norm_data,index_col='index')
+            self.__volatility = dataset['returns'].std() * math.sqrt(252)
+        except:
+            self.__volatility = -1
+
+    @property
+    def annual(self):
+        return self.__volatility
+        
+def csv_creator(symbol:str,start_date:str,end_date:str):
+    download = data_fetcher.Downloader(symbol,start_date,end_date)
+    download.save()
+    file_path = "./data/{}/quotes.csv"
+    if True: #os.path.isfile(file_path.format(symbol)):
+        feature = data_creator.Feature_Creator.read_csv(symbol,file_path.format(symbol))
+        feature.calculate_features()
+        feature.normalize_data()
+        feature.save_stock_data()
+        feature.save_normalized_data()
+    else:
+        print("File does not exist : ",file_path.format(symbol))

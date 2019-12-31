@@ -1,7 +1,8 @@
-from utils.data_preprocessing.data_split import data_split as d_s
-from core.models.model import final_model
+from utils.data_preparation.data_split import data_split
+from core.model import final_model
 
-def train(ticker:str,window_sizes:list,learn_rates:list,dropouts:list, epochs:list, batch_size:int,verbose=0):
+def train(ticker:str,window_sizes:list,learn_rates:list,dropouts:list, 
+          epochs:list, batch_size:int,verbose=0):
     best_model = None
     lowest_test_error = 2.0
     best_training_error = 0.0
@@ -19,8 +20,8 @@ def train(ticker:str,window_sizes:list,learn_rates:list,dropouts:list, epochs:li
             print("\nWindow size: {}".format(window_size))
             print('-' * 60)
         
-        seq_obj = d_s.MultiSequence(ticker,window_size,1)
-        X_train,y_train,X_test,y_test = d_s.split_data(seq_obj)
+        seq_obj = data_split.MultiSequence(ticker,window_size,1)
+        X_train,y_train,X_test,y_test = data_split.split_data(seq_obj)
 
         for rate in learn_rates:
             for dropout in dropouts:

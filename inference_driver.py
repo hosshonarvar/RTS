@@ -6,7 +6,8 @@ Created on Mon Dec 24 14:27:53 2019
 @author: hosseinhonarvar
 """
 
-from core.model_inference.model_inference import Inference
+from core.model_inference import Inference
+from utils.data_preparation.data_preprocessing.data_creator import csv_creator
 
 tickers = ['MMM']
 start_date = '20161101'
@@ -15,10 +16,10 @@ end_date = '20181031'
 
 for ticker in tickers:
     print(ticker)
-    Inference.download_prep(ticker,start_date,end_date)
+    csv_creator(ticker,start_date,end_date)
 
 stock_1 = tickers[0]
 print("***  Closing price prediction for {} *** ".format(stock_1))
 pred = Inference(stock_1)
 pred.select_model(verbose=1, tickers=tickers)
-pred.graph()
+pred.plot_predictions()

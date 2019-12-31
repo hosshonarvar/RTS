@@ -6,12 +6,12 @@ Created on Mon Dec 24 14:27:53 2019
 @author: hosseinhonarvar
 """
 
-from core.model_training.model_training import train
-from core.models.model import ModelLoader
-from utils.data_preprocessing.data_preparation import data_fetcher as d_f
+from core.model_training import train
+from core.model import ModelLoader
+from utils.data_preparation.data_preprocessing import data_fetcher
 
 
-stocks = d_f.companies()
+stocks = data_fetcher.companies()
 symbols = stocks['Symbol'].values.tolist()
 print(symbols)
 
@@ -21,7 +21,8 @@ learn_rates = [0.01,0.001]
 epochs = [100,200]
 batch_size = 50
 
-result = train(symbols[0], window_sizes, learn_rates, dropouts, epochs, batch_size,verbose=1)
+result = train(symbols[0], window_sizes, learn_rates, dropouts, epochs, 
+               batch_size, verbose=1)
 
 print("\nResults : ")
 print("-"*60)
