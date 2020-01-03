@@ -9,7 +9,7 @@ Created on Mon Dec 24 14:27:53 2019
 from core.model_inference import Inference
 from utils.data_preparation.data_preprocessing.data_creator import csv_creator
 
-tickers = ['MMM']
+tickers = ['AAPL']
 start_date = '20161101'
 end_date = '20181031'
 #download quotes from yahoo and save to directory

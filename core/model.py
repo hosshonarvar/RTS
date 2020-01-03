@@ -1,10 +1,13 @@
 import numpy as np
 import pandas as pd
 import sys
+import os
 
 from keras.models import Sequential
 from keras.layers import Dense, LSTM, Dropout, Bidirectional
 from keras.optimizers import RMSprop
+from tensorflow.keras.models import model_from_json
+import json
 
 def fixed_model(X, y, learn_rate):
     model = Sequential()

@@ -1,7 +1,7 @@
 import pandas as pd
 import os
 from core.model import ModelLoader
-from utils.data_preparation.data_split import data_split
+from utils.data_preparation.data_split.data_split import MultiSequence
 from utils.data_postprocessing import visualize
 
 class Inference(object):
@@ -27,7 +27,7 @@ class Inference(object):
         for idx,ticker in enumerate(tickers,1):
             try:
                 loaded_model = ModelLoader(ticker)
-                seq_obj = data_split.MultiSequence(self.symbol,loaded_model.window_size,1)
+                seq_obj = MultiSequence(self.symbol,loaded_model.window_size,1)
                 testing_error = loaded_model.model.evaluate(seq_obj.X,seq_obj.y, verbose=0)
                 if verbose==1:
                     print(">{0:>3}) Now checking model: {1:<5}  Test error result: {2:.4f}".format(idx,ticker, testing_error))
