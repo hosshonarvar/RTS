@@ -6,7 +6,7 @@ Created on Mon Dec 24 14:27:53 2019
 @author: hosseinhonarvar
 """
 
-from utils.data_preparation.data_split import data_split
+from utils.data_preparation import data_split
 from sklearn.preprocessing import MinMaxScaler
 import matplotlib.pyplot as plt
 import numpy as np

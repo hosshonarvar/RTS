@@ -5,7 +5,7 @@ import pandas as pd
 from sklearn.preprocessing import MinMaxScaler
 from collections import OrderedDict
 import numpy as np
-from utils.data_preparation.data_preprocessing import data_fetcher, data_creator
+from utils.data_preparation import data_fetcher, data_creator
 
 class BaseData(object):
     def __init__(self,symbol:str):
