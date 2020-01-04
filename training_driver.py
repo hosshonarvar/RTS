@@ -8,7 +8,7 @@ Created on Mon Dec 24 14:27:53 2019
 
 from core.model_training import train
 from core.model import ModelLoader
-from utils.data_preparation.data_preprocessing import data_fetcher
+from utils.data_preparation import data_fetcher
 
 
 stocks = data_fetcher.companies()

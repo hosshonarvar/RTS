@@ -1,7 +1,7 @@
 import pandas as pd
 import os
 from core.model import ModelLoader
-from utils.data_preparation.data_split.data_split import MultiSequence
+from utils.data_preparation.data_split import MultiSequence
 from utils.data_postprocessing import visualize
 
 class Inference(object):

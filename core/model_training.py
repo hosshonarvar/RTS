@@ -1,4 +1,4 @@
-from utils.data_preparation.data_split import data_split
+from utils.data_preparation import data_split
 from core.model import final_model
 
 def train(ticker:str,window_sizes:list,learn_rates:list,dropouts:list, 
