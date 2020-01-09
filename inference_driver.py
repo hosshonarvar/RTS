@@ -25,6 +25,7 @@ pred = Inference(stock_1)
 pred.select_model(verbose=1, tickers=tickers)
 pred.plot_predictions()
 
+
 ### Mean squared error
 Mean_squared_error('AAPL').MSR 
 
